@@ -1,25 +1,37 @@
+<!DOCTYPE html>
+<html>
 <head>
-  <link rel="stylesheet" href="https://cdn.statically.io/gh/weberi/chatroom/master/dist/Chatroom.css" />
-  <link rel="stylesheet" href="https://cdn.statically.io/gh/weberi/chatroom/master/themes/theme2.css" />
+    <title>Weatherbot Test</title>
+    <link rel="stylesheet" href="https://cdn.statically.io/gh/weberi/chatroom/master/dist/Chatroom.css" />
+    <link rel="stylesheet" href="https://cdn.statically.io/gh/weberi/chatroom/master/themes/theme2.css" />
+    <style>
+        /* Sicherstellen, dass der Container Platz hat */
+        .chat-container {
+            height: 500px;
+            width: 100%;
+        }
+    </style>
 </head>
-
 <body>
-  <div class="chat-container"></div>
+    <h1>Mein Weatherbot</h1>
+    <div class="chat-container"></div>
 
-  <script src="https://cdn.statically.io/gh/weberi/chatroom/master/dist/Chatroom.js"></script>
-  
-  <script type="text/javascript">
-    // Sicherstellen, dass das DOM geladen ist
-    window.onload = function() {
-      var chatroom = new window.Chatroom({
-        host: "https://reimagined-robot-jr5r7w9p5qp4cp9v-5005.app.github.dev", 
-        title: "Weatherbot",
-        container: document.querySelector(".chat-container"),
-        welcomeMessage: "Hi, I am a Weatherbot.",
-        speechRecognition: "en-US",
-        voiceLang: "en-US"
-      });
-      chatroom.openChat();
-    };
-  </script>
+    <script src="https://cdn.statically.io/gh/weberi/chatroom/master/dist/Chatroom.js"></script>
+    
+    <script type="text/javascript">
+        window.onload = function() {
+            // WICHTIG: Die URL muss auf /webhooks/rest enden, 
+            // das Widget ergänzt das meist automatisch, aber der Host muss stimmen.
+            var chatroom = new window.Chatroom({
+                host: "https://reimagined-robot-jr5r7w9p5qp4cp9v-5005.app.github.dev", 
+                title: "Weatherbot",
+                container: document.querySelector(".chat-container"),
+                welcomeMessage: "Hi, I am a Weatherbot.",
+                speechRecognition: "en-US",
+                voiceLang: "en-US"
+            });
+            chatroom.openChat();
+        };
+    </script>
 </body>
+</html>
