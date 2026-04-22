@@ -2,51 +2,33 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weatherbot Interface</title>
-    
-    <link rel="stylesheet" href="https://cdn.statically.io/gh/weberi/chatroom/master/dist/Chatroom.css" />
-    <link rel="stylesheet" href="https://cdn.statically.io/gh/weberi/chatroom/master/themes/theme2.css" />
-    
+    <title>Weatherbot Test</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/weberi/chatroom@master/dist/Chatroom.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/weberi/chatroom@master/themes/theme2.css" />
     <style>
-        body { font-family: Arial, sans-serif; background-color: #f4f4f9; display: flex; flex-direction: column; align-items: center; }
-        h1 { color: #333; margin-top: 50px; }
-        /* Der Container braucht eine definierte Größe */
-        .chat-container { 
-            width: 400px; 
-            height: 500px; 
-            margin-top: 20px;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
+        .chat-container { width: 400px; height: 500px; border: 2px solid red; } /* Roter Rahmen zum Testen! */
     </style>
 </head>
 <body>
+    <h1>Bot Test Seite</h1>
+    <div class="chat-container" id="bot-target"></div>
 
-    <h1>Mein Wetter-Assistent</h1>
-    
-    <div class="chat-container"></div>
+    <script src="https://cdn.jsdelivr.net/gh/weberi/chatroom@master/dist/Chatroom.js"></script>
 
-    <script src="https://cdn.statically.io/gh/weberi/chatroom/master/dist/Chatroom.js"></script>
-
-    <script type="text/javascript">
-        // Wir warten, bis das Fenster komplett geladen ist
-        window.addEventListener('load', function() {
-            if (window.Chatroom) {
+    <script>
+        window.addEventListener('DOMContentLoaded', (event) => {
+            console.log("DOM geladen, starte Bot...");
+            try {
                 var chatroom = new window.Chatroom({
-                    // WICHTIG: Prüfe diese URL im VS Code "Ports" Tab!
                     host: "https://reimagined-robot-jr5r7w9p5qp4cp9v-5005.app.github.dev",
                     title: "Weatherbot",
-                    container: document.querySelector(".chat-container"),
-                    welcomeMessage: "Hi, ich bin der Weatherbot. Wie kann ich dir helfen?",
-                    speechRecognition: "de-DE",
-                    voiceLang: "de-DE"
+                    container: document.getElementById("bot-target"),
+                    welcomeMessage: "Hi!"
                 });
                 chatroom.openChat();
-                console.log("Chatroom erfolgreich initialisiert.");
-            } else {
-                console.error("Fehler: Chatroom-Bibliothek konnte nicht geladen werden.");
+                console.log("Bot sollte jetzt sichtbar sein!");
+            } catch (e) {
+                console.error("Script Fehler:", e);
             }
         });
     </script>
