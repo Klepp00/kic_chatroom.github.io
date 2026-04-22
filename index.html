@@ -1,6 +1,5 @@
 <head>
   <link rel="stylesheet" href="https://cdn.statically.io/gh/weberi/chatroom/master/dist/Chatroom.css" />
-  <link rel="stylesheet" href="https://cdn.statically.io/gh/weberi/chatroom/master/index.css" />
   <link rel="stylesheet" href="https://cdn.statically.io/gh/weberi/chatroom/master/themes/theme2.css" />
 </head>
 
@@ -8,17 +7,19 @@
   <div class="chat-container"></div>
 
   <script src="https://cdn.statically.io/gh/weberi/chatroom/master/dist/Chatroom.js"></script>
+  
   <script type="text/javascript">
-
-    var chatroom = new window.Chatroom({
-      host: "https://reimagined-robot-jr5r7w9p5qp4cp9v-5005.app.github.dev",
-      title: "Weatherbot",
-      container: document.querySelector(".chat-container"),
-      welcomeMessage: "Hi, I am a Weatherbot.",
-      speechRecognition: "en-US",
-      voiceLang: "en-US"
-    });
-    chatroom.openChat();
-
+    // Sicherstellen, dass das DOM geladen ist
+    window.onload = function() {
+      var chatroom = new window.Chatroom({
+        host: "https://reimagined-robot-jr5r7w9p5qp4cp9v-5005.app.github.dev",
+        title: "Weatherbot",
+        container: document.querySelector(".chat-container"),
+        welcomeMessage: "Hi, I am a Weatherbot.",
+        speechRecognition: "en-US",
+        voiceLang: "en-US"
+      });
+      chatroom.openChat();
+    };
   </script>
 </body>
