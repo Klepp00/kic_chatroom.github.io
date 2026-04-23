@@ -1,24 +1,47 @@
+<!DOCTYPE html>
+<html lang="de">
 <head>
-  <link rel="stylesheet" href="https://cdn.statically.io/gh/weberi/chatroom/master/dist/Chatroom.css" />
-  <link rel="stylesheet" href="https://cdn.statically.io/gh/weberi/chatroom/master/index.css" />
-  <link rel="stylesheet" href="https://cdn.statically.io/gh/weberi/chatroom/master/themes/theme2.css" />
+    <meta charset="UTF-8">
+    <title>Weatherbot Test</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/weberi/chatroom@master/dist/Chatroom.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/weberi/chatroom@master/themes/theme2.css" />
+    
+    <style>
+        /* Der Container muss eine sichtbare Größe haben */
+        .chat-container { 
+            width: 100%; 
+            max-width: 400px; 
+            height: 500px; 
+            border: 1px solid #ccc; 
+            margin: 20px auto;
+        }
+    </style>
 </head>
-
 <body>
-  <div class="chat-container"></div>
+    <h1 style="text-align:center;">Wetter Chatbot Test</h1>
 
-  <script src="https://cdn.statically.io/gh/weberi/chatroom/master/dist/Chatroom.js"/></script>
-  <script type="text/javascript">
+    <div class="chat-container"></div>
 
-    var chatroom = new window.Chatroom({
-      host: "https://reimagined-robot-jr5r7w9p5qp4cp9v-5005.app.github.dev",
-      title: "Weatherbot",
-      container: document.querySelector(".chat-container"),
-      welcomeMessage: "Hi, I am a Weatherbot.",
-      speechRecognition: "en-US",
-      voiceLang: "en-US"
-    });
-    chatroom.openChat();
+    <script src="https://cdn.jsdelivr.net/gh/weberi/chatroom@master/dist/Chatroom.js"></script>
 
-  </script>
+    <script type="text/javascript">
+        // Sicherstellen, dass das DOM geladen ist
+        window.addEventListener('DOMContentLoaded', function() {
+            if (window.Chatroom) {
+                var chatroom = new window.Chatroom({
+                    host: "https://reimagined-robot-jr5r7w9p5qp4cp9v-5005.app.github.dev",
+                    title: "Weatherbot",
+                    container: document.querySelector(".chat-container"),
+                    welcomeMessage: "Hi, I am a Weatherbot.",
+                    speechRecognition: "en-US",
+                    voiceLang: "en-US"
+                });
+                chatroom.openChat();
+                console.log("Chatroom wurde gestartet!");
+            } else {
+                console.error("Chatroom-Bibliothek konnte nicht geladen werden.");
+            }
+        });
+    </script>
 </body>
+</html>
