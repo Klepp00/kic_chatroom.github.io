@@ -1,18 +1,10 @@
-<head>
-  <link rel="stylesheet" href="https://cdn.statically.io/gh/weberi/chatroom/master/dist/Chatroom.css" />
-  <link rel="stylesheet" href="https://cdn.statically.io/gh/weberi/chatroom/master/index.css" />
-  <link rel="stylesheet" href="https://cdn.statically.io/gh/weberi/chatroom/master/themes/theme2.css" />
-</head>
-
-<body>
-  <div class="chat-container"></div>
-
-  <script src="https://cdn.statically.io/gh/weberi/chatroom/master/dist/Chatroom.js"></script>
-
-  <script type="text/javascript">
-    // Wir warten, bis das Skript sicher geladen ist
-    window.onload = function() {
-      if (window.Chatroom) {
+<script type="text/javascript">
+  function initChat() {
+    console.log("Prüfe, ob Chatroom verfügbar ist...");
+    
+    if (typeof window.Chatroom === 'function') {
+      console.log("Chatroom gefunden! Starte Konfiguration...");
+      try {
         var chatroom = new window.Chatroom({
           host: "https://reimagined-robot-jr5r7w9p5qp4cp9v-5005.app.github.dev",
           title: "Weatherbot",
@@ -22,9 +14,19 @@
           voiceLang: "en-US"
         });
         chatroom.openChat();
-      } else {
-        console.error("Chatroom-Skript konnte nicht geladen werden.");
+        console.log("Chat erfolgreich geöffnet.");
+      } catch (e) {
+        console.error("Fehler beim Erstellen des Chatrooms:", e);
       }
-    };
-  </script>
-</body>
+    } else {
+      console.error("KRITISCH: window.Chatroom ist keine Funktion! Das Skript von Statically wurde nicht korrekt geladen oder blockiert.");
+    }
+  }
+
+  // Sicherstellen, dass das Skript erst läuft, wenn alles geladen ist
+  if (document.readyState === "complete") {
+    initChat();
+  } else {
+    window.addEventListener("load", initChat);
+  }
+</script>
