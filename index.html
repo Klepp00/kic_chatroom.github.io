@@ -1,32 +1,64 @@
-<script type="text/javascript">
-  function initChat() {
-    console.log("Prüfe, ob Chatroom verfügbar ist...");
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot Check</title>
     
-    if (typeof window.Chatroom === 'function') {
-      console.log("Chatroom gefunden! Starte Konfiguration...");
-      try {
-        var chatroom = new window.Chatroom({
-          host: "https://reimagined-robot-jr5r7w9p5qp4cp9v-5005.app.github.dev",
-          title: "Weatherbot",
-          container: document.querySelector(".chat-container"),
-          welcomeMessage: "Hi, I am a Weatherbot.",
-          speechRecognition: "en-US",
-          voiceLang: "en-US"
-        });
-        chatroom.openChat();
-        console.log("Chat erfolgreich geöffnet.");
-      } catch (e) {
-        console.error("Fehler beim Erstellen des Chatrooms:", e);
-      }
-    } else {
-      console.error("KRITISCH: window.Chatroom ist keine Funktion! Das Skript von Statically wurde nicht korrekt geladen oder blockiert.");
-    }
-  }
+    <link rel="stylesheet" href="https://cdn.statically.io/gh/weberi/chatroom/master/dist/Chatroom.css" />
+    
+    <style>
+        body { font-family: sans-serif; background-color: #f4f4f9; display: flex; flex-direction: column; align-items: center; }
+        
+        /* Der rote Rahmen zeigt dir, ob der Container existiert */
+        #chat-window {
+            width: 400px;
+            height: 500px;
+            border: 3px solid red; 
+            margin-top: 20px;
+            background: white;
+        }
+        .status-box { padding: 10px; margin: 10px; border: 1px solid #ccc; background: #eee; }
+    </style>
+</head>
+<body>
 
-  // Sicherstellen, dass das Skript erst läuft, wenn alles geladen ist
-  if (document.readyState === "complete") {
-    initChat();
-  } else {
-    window.addEventListener("load", initChat);
-  }
-</script>
+    <h1>Chatbot Diagnose-Seite</h1>
+    <div id="status" class="status-box">Prüfe JavaScript...</div>
+
+    <div id="chat-window"></div>
+
+    <script src="https://cdn.statically.io/gh/weberi/chatroom/master/dist/Chatroom.js"></script>
+
+    <script>
+        const statusDiv = document.getElementById('status');
+
+        window.onload = function() {
+            // Check 1: Ist das Skript da?
+            if (typeof window.Chatroom === 'function') {
+                statusDiv.innerHTML = "✅ Skript geladen. Initialisiere Chat...";
+                statusDiv.style.color = "green";
+
+                try {
+                    var chatroom = new window.Chatroom({
+                        host: "https://reimagined-robot-jr5r7w9p5qp4cp9v-5005.app.github.dev",
+                        title: "Weatherbot",
+                        container: document.querySelector("#chat-window"),
+                        welcomeMessage: "Hi, I am a Weatherbot.",
+                        speechRecognition: "en-US",
+                        voiceLang: "en-US"
+                    });
+                    chatroom.openChat();
+                    statusDiv.innerHTML += "<br>✅ openChat() wurde aufgerufen.";
+                } catch (e) {
+                    statusDiv.innerHTML = "❌ Fehler beim Starten: " + e.message;
+                    statusDiv.style.color = "red";
+                }
+            } else {
+                statusDiv.innerHTML = "❌ FEHLER: Chatroom.js wurde nicht geladen oder blockiert!";
+                statusDiv.style.color = "red";
+            }
+        };
+    </script>
+</body>
+</html>
