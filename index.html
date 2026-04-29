@@ -8,17 +8,23 @@
   <div class="chat-container"></div>
 
   <script src="https://cdn.statically.io/gh/weberi/chatroom/master/dist/Chatroom.js"></script>
+
   <script type="text/javascript">
-
-    var chatroom = new window.Chatroom({
-      host: "https://reimagined-robot-jr5r7w9p5qp4cp9v-5005.app.github.dev",
-      title: "Weatherbot",
-      container: document.querySelector(".chat-container"),
-      welcomeMessage: "Hi, I am a Weatherbot.",
-      speechRecognition: "en-US",<script 
-      voiceLang: "en-US"
-    });
-    chatroom.openChat();
-
+    // Wir warten, bis das Skript sicher geladen ist
+    window.onload = function() {
+      if (window.Chatroom) {
+        var chatroom = new window.Chatroom({
+          host: "https://reimagined-robot-jr5r7w9p5qp4cp9v-5005.app.github.dev",
+          title: "Weatherbot",
+          container: document.querySelector(".chat-container"),
+          welcomeMessage: "Hi, I am a Weatherbot.",
+          speechRecognition: "en-US",
+          voiceLang: "en-US"
+        });
+        chatroom.openChat();
+      } else {
+        console.error("Chatroom-Skript konnte nicht geladen werden.");
+      }
+    };
   </script>
 </body>
