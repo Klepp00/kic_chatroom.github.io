@@ -1,8 +1,15 @@
-<script src="https://cdn.statically.io/gh/weberi/chatroom/master/dist/Chatroom.js"></script>
+<head>
+  <link rel="stylesheet" href="https://cdn.statically.io/gh/weberi/chatroom/master/dist/Chatroom.css" />
+  <link rel="stylesheet" href="https://cdn.statically.io/gh/weberi/chatroom/master/index.css" />
+  <link rel="stylesheet" href="https://cdn.statically.io/gh/weberi/chatroom/master/themes/theme2.css" />
+</head>
 
-<script type="text/javascript">
-  // Warte kurz, bis das Dokument bereit ist
-  window.onload = function() {
+<body>
+  <div class="chat-container"></div>
+
+  <script src="https://cdn.statically.io/gh/weberi/chatroom/master/dist/Chatroom.js"/></script>
+  <script type="text/javascript">
+
     var chatroom = new window.Chatroom({
       host: "https://reimagined-robot-jr5r7w9p5qp4cp9v-5005.app.github.dev",
       title: "Weatherbot",
@@ -12,5 +19,6 @@
       voiceLang: "en-US"
     });
     chatroom.openChat();
-  };
-</script>
+
+  </script>
+</body>
